@@ -1,7 +1,6 @@
 const HDWallerProvider = require('truffle-hdwallet-provider');
 const Web3 = require('web3');
-const { interface, bytecode } = require('./compile');;
-
+const { interface, bytecode } = require('./compile');
 const provider = new HDWallerProvider(
     'disorder consider toddler steak novel unveil piece omit laugh poet license glow',
     'https://ropsten.infura.io/v3/c535946d0225477f921bdb201975d0aa'
@@ -15,9 +14,9 @@ const deploy = async () =>{
     console.log(`Attempting to deploy from account ${accounts[0]}`);
 
     const result = await new web3.eth.Contract(interface)
-        .deploy({ data: bytecode, arguments: ['Hi There!']})
+        .deploy({ data: bytecode})
         .send({ gas: '1000000', from: accounts[0]});
-
+    console.log(JSON.stringify(interface));
     console.log(`Contract deployed to ${result.options.address}`);
 }
 
